@@ -1,8 +1,26 @@
 kind: pipeline
 type: docker
-name: default
+name: clone
+
 steps:
   - name: dronetest
     image: node
-    commands: npm install
-      npm test
+    commands:
+      - npm install
+      - npm test
+ - name: slack
+    image: plugins/slack
+    settings:
+      webhook: https://hooks.slack.com/services/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
+      channel: random
+      template: >
+        {{#success build.status}}
+          build {{build.number}} succeeded. Good job.
+        {{else}}
+          build {{build.number}} failed. Fix me please.
+        {{/success}}
+# trigger: # 觸發 pipeline 條件，分支為 master，且進行 push 行為
+#   branch:
+#     - master
+#   event:
+#     - push
