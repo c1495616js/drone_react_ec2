@@ -19,8 +19,8 @@ steps:
         {{else}}
           build {{build.number}} failed. Fix me please.
         {{/success}}
-# trigger: # 觸發 pipeline 條件，分支為 master，且進行 push 行為
-#   branch:
-#     - master
-#   event:
-#     - push
+trigger: # 觸發 pipeline 條件，分支為 master，且進行 push 行為
+  branch:
+    - master
+  event:
+    - push
