@@ -2,15 +2,13 @@ kind: pipeline
 type: docker
 name: clone
 
-workspace:
-  path: build
-
 steps:
   - name: build
     image: node
     commands:
       - npm install
       - npm run build
+      - cd build
 
   - name: deploy
     image: plugins/s3
