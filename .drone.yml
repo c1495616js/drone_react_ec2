@@ -13,10 +13,12 @@ steps:
     image: plugins/s3
     settings:
       bucket: drone-react-pipeline
-      access_key: AKIAIP36U7IFFQHF7W7Q
-      secret_key: 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
-      source: public/**/*
-      target: /target/location
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      source: build/**/*
+      target: /
 
   # - name: slack
   #   image: plugins/slack
