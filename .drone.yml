@@ -10,18 +10,16 @@ steps:
       - npm run build
 
   - name: deploy
-    image: plugins/s3
-    commands:
-      - cd build
+    image: plugins/s3-sync:1
     settings:
       bucket: drone-react-pipeline
       access_key:
         from_secret: aws_access_key_id
       secret_key:
         from_secret: aws_secret_access_key
-      acl: public-read
+      # acl: public-read
       region: us-west-1
-      source: ./**/*
+      source: build
       target: /
 
   # - name: slack
