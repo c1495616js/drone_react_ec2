@@ -8,10 +8,11 @@ steps:
     commands:
       - npm install
       - npm run build
-      - cd build
 
   - name: deploy
     image: plugins/s3
+    commands:
+      - cd build
     settings:
       bucket: drone-react-pipeline
       access_key:
