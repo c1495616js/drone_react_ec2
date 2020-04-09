@@ -2,6 +2,9 @@ kind: pipeline
 type: docker
 name: clone
 
+workspace:
+  path: build
+
 steps:
   - name: build
     image: node
@@ -17,7 +20,7 @@ steps:
         from_secret: aws_access_key_id
       secret_key:
         from_secret: aws_secret_access_key
-      source: /build/**/*
+      source: **/*
       target: /
 
   # - name: slack
